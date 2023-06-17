@@ -1,0 +1,12 @@
+{
+  // formatterとしてBlackを設定
+  "python.formatting.provider": "black",
+  "[python]": {
+    // Pythonのコードサジェストを有効にする
+    "editor.wordBasedSuggestions": true,
+    // VSCodeのデフォルトのフォーマッターにblackを指定
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    // ファイルの保存時（command+s or ctrl+s）でコード整形
+    "editor.formatOnSave": true
+  }
+}

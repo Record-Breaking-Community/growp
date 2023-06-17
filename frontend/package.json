@@ -1,0 +1,47 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "fmt": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "fmt:check": "prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
+    "axios": "^1.4.0",
+    "next": "13.2.4",
+    "nookies": "^2.5.2",
+    "react": "18.2.0",
+    "react-alert": "^7.0.3",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.44.3",
+    "react-query": "^3.39.3",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "18.15.5",
+    "@types/react": "18.0.28",
+    "@types/react-alert": "^7.0.2",
+    "@types/react-dom": "18.0.11",
+    "@types/validator": "^13.7.17",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.6",
+    "prettier-plugin-tailwindcss": "^0.2.5",
+    "tailwindcss": "^3.2.7",
+    "typescript": "5.0.2"
+  }
+}

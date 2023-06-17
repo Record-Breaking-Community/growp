@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+  fastapi:
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - ./app:/app
+    container_name: fastapi
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_URI=postgresql://postgres:postgres@db/postgres_db
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres_db
+    hostname: postgres
+    restart: always
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    volumes:
+      - pgadmin4_data:/var/lib/pgadmin
+    container_name: pgadmin4
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@test.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin4
+    hostname: pgadmin4
+    depends_on:
+      - postgres
+    restart: always
+
+volumes:
+  postgres_data:
+  pgadmin4_data:

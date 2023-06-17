@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+databases[postgresql]
+SQLAlchemy
+alembic
+psycopg2
+passlib
+bcrypt
+email_validator
+python-jose
+python-multipart

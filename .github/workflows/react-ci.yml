@@ -1,0 +1,44 @@
+name: React-CI
+on:
+  pull_request:
+    branches:
+      - main
+      - frontend@*
+    paths:
+      - "frontend/**"
+      - ".github/workflows/react-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+      - ".github/workflows/react-ci.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0
+          cache: yarn
+          cache-dependency-path: ./frontend/yarn.lock
+      - name: cache-node-modules
+        uses: actions/cache@v3
+        id: node_modules_cache_id
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+      - name: package-install
+        if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+        run: cd frontend && yarn install
+      - name: eslint-check
+        run: cd frontend && yarn eslint
+      - name: prettier-check
+        run: cd frontend && yarn fmt:check
+      - name: build
+        run: cd frontend && yarn build
